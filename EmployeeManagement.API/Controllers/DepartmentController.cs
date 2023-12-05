@@ -15,7 +15,7 @@ namespace EmployeeManagement.API.Controllers
             _db = db;
         }
 
-        // get departments
+        // READ
         [HttpGet("GetDepartments", Name = "GetDepartments")]
         public IActionResult GetDepartments()
         {
@@ -23,7 +23,7 @@ namespace EmployeeManagement.API.Controllers
             return Ok(departments);
         }
 
-        // get single department
+        // READ single department
         [HttpGet("GetDepartment/{id}")]
         public IActionResult GetDepartment(int id)
         {
@@ -37,7 +37,7 @@ namespace EmployeeManagement.API.Controllers
             return Ok(department);
         }
 
-        // create department
+        // CREATE
         [HttpPost("CreateDepartment")]
         public IActionResult CreateDepartment(Department obj)
         {
@@ -57,6 +57,57 @@ namespace EmployeeManagement.API.Controllers
             _db.SaveChanges();
 
             var departments = _db.Departments.ToList();
+            return Ok(departments);
+        }
+
+        // UPDATE
+        [HttpPost("UpdateDepartment/{id}")]
+        public IActionResult UpdateDepartment(int id, Department obj)
+        {
+            if(id == 0 || id == null)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            var department = _db.Departments.Find(id);
+
+            if (department == null)
+            {
+                return NotFound("Department not found");
+            }
+
+            department.DepartmentName = obj.DepartmentName;
+            department.Manager = obj.Manager;
+            department.Members = obj.Members;
+
+            _db.SaveChanges();
+
+            var departments = _db.Departments.ToList();
+
+            return Ok(departments);
+        }
+
+        // DELETE
+        [HttpDelete("DeleteDepartment/{id}")]
+        public IActionResult DeleteDepartment(int id)
+        {
+            if (id == 0 || id == null)
+            {
+                return BadRequest("Invalid");
+            }
+
+            var department = _db.Departments.Find(id);
+
+            if(department == null)
+            {
+                return NotFound("Department not found");
+            }
+
+            _db.Departments.Remove(department);
+            _db.SaveChanges();
+
+            var departments = _db.Departments.ToList();
+
             return Ok(departments);
         }
     }
