@@ -18,6 +18,11 @@ namespace EmployeeManagement.API.Controllers
             _logger = logger;
         }
 
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
