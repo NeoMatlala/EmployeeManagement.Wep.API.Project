@@ -36,5 +36,28 @@ namespace EmployeeManagement.API.Controllers
 
             return Ok(department);
         }
+
+        // create department
+        [HttpPost("CreateDepartment")]
+        public IActionResult CreateDepartment(Department obj)
+        {
+            if(obj == null)
+            {
+                return BadRequest("Invalid Data, try again please.");
+            }
+
+            var department = new Department
+            {
+                DepartmentName = obj.DepartmentName,
+                Manager = obj.Manager,
+                Members = obj.Members,
+            };
+
+            _db.Departments.Add(department);
+            _db.SaveChanges();
+
+            var departments = _db.Departments.ToList();
+            return Ok(departments);
+        }
     }
 }

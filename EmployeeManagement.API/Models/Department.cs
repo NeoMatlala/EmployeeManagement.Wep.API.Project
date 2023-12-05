@@ -12,6 +12,6 @@ namespace EmployeeManagement.API.Models
         public int Members { get; set; }
 
         //navigation property
-        public List<Employee> Employees { get; set; }
+        //public ICollection<Employee> Employees { get; set; } = new List<Employee>();
     }
 }
