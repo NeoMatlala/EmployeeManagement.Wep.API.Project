@@ -2,21 +2,21 @@
     <div class="max-w-7xl mx-auto">
         <h1 class="font-medium text-4xl">Edit Department</h1>
 
-        <form class="mt-16">
+        <form class="mt-16" @submit.prevent="handleSubmit">
             <div class="grid gap-6 mb-6 md:grid-cols-3">
                 <div>
                     <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Name</label>
-                    <input type="text" id="first_name" :value="department.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                    <input type="text" id="first_name" v-model="department.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
                     <small class="text-xs hidden text-red-600">Department Name is required</small>
                 </div>
                 <div>
                     <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager</label>
-                    <input type="text" id="last_name" :value="department.manager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required>
+                    <input type="text" id="last_name" v-model="department.manager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required>
                     <small class="text-xs hidden text-red-600">Manager is required</small>
                 </div>
                 <div>
                     <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Memebers</label>
-                    <input type="text" id="company" :value="department.members" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Flowbite" required>
+                    <input type="text" id="company" v-model="department.members" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Flowbite" required>
                 </div>  
             </div>
             <div class="flex justify-end items-center">
@@ -36,7 +36,11 @@ import { useRoute } from 'vue-router';
 export default{
     data(){
         return{
-            department: [],
+            department : {
+                departmentName: '',
+                manager: '',
+                members: '',
+            }
         }
     },
     setup(){
@@ -57,20 +61,17 @@ export default{
             } catch(error){
                 console.log('Error fetching departments', error.message)
             }
+        },
+        async handleSubmit(){
+            try{
+                const response = await axios.post(`https://localhost:7244/api/Department/UpdateDepartment/${this.id}`, this.department)
+                console.log(response.data)
+                this.$router.push('/departments');
+            } catch(error) {
+                console.log('error updating department', error);
+            }
         }
     }
-
-    
-
 }
-
-
-
-
-// const { id } = useRoute().params;
-
-// var response = await axios.get(`https://localhost:7244/api/Department/GetDepartments/${id}`);
-// var department = response.data
-// console.log(department)
 
 </script>
