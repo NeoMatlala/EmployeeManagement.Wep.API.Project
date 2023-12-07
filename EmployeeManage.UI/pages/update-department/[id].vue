@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-7xl mx-auto">
-        <h1 class="font-medium text-4xl">Edit Department</h1>
+    <div>
+        <h1 class="font-medium text-3xl text-slate-800 mb-16">Edit Department</h1>
 
         <form class="mt-16" @submit.prevent="handleSubmit">
             <div class="grid gap-6 mb-6 md:grid-cols-3">
@@ -66,7 +66,7 @@ export default{
             try{
                 const response = await axios.post(`https://localhost:7244/api/Department/UpdateDepartment/${this.id}`, this.department)
                 console.log(response.data)
-                this.$router.push('/departments');
+                this.$router.replace('/departments');
             } catch(error) {
                 console.log('error updating department', error);
             }
