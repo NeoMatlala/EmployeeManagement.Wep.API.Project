@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-7xl mx-auto">
-        <h1 class="font-medium text-6xl mb-16">Departments</h1>
+    <div>
+        <h1 class="font-medium text-3xl text-slate-800 mb-16">Departments</h1>
 
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
