@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto">
         <h1 class="font-medium text-4xl">Delete Department</h1>
 
-        <form class="mt-16">
+        <form class="mt-16" @submit.prevent="handleDelete">
             <div class="grid gap-6 mb-6 md:grid-cols-3">
                 <div>
                     <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Name</label>
@@ -53,6 +53,16 @@ export default{
                 console.log(response.data)
             } catch(error){
                 console.log('Error fetching departments', error.message)
+            }
+        },
+        async handleDelete(){
+            console.log(this.id)
+            try{
+                var response = await axios.delete(`https://localhost:7244/api/Department/DeleteDepartment/${this.id}`)
+                console.log(response.data)
+                this.$router.replace('/departments');
+            } catch(error) {
+                console.log("Error delete department:", error.message)
             }
         }
     }

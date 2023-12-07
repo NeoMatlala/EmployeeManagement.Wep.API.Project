@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-blue-700 text-white w-1/4">
+    <nav class="bg-blue-700 text-white rounded-l-lg w-1/4">
         <div class="max-w-screen-xl flex flex-col mx-auto p-5">
             <NuxtLink to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi w-8 h-8 bi-eye-fill" viewBox="0 0 16 16">
