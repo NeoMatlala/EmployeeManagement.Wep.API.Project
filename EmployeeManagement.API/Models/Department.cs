@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace EmployeeManagement.API.Models
 {
@@ -12,6 +13,7 @@ namespace EmployeeManagement.API.Models
         public int Members { get; set; }
 
         //navigation property
+        //[JsonIgnore]
         //public ICollection<Employee> Employees { get; set; } = new List<Employee>();
     }
 }
