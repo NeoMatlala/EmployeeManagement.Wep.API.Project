@@ -17,7 +17,8 @@ namespace EmployeeManagement.API.Controllers
             _db = db;
         }
 
-        [HttpGet("GetEmployees")]
+        // READ
+        [HttpGet]
         public IActionResult GetEmployees() 
         {
             var employees = _db.Employees.Include(e => e.Department).ToList();
@@ -25,7 +26,7 @@ namespace EmployeeManagement.API.Controllers
             return Ok(employees);
         }
 
-        [HttpGet("GetEmployee/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetEmployee(int id)
         {
 
@@ -44,7 +45,8 @@ namespace EmployeeManagement.API.Controllers
             return Ok(employee);
         }
 
-        [HttpPost("CreateEmployee")]
+        // CREATE
+        [HttpPost]
         public IActionResult CreateEmployee([FromBody] Employee obj)
         {
             if (obj == null)
@@ -71,6 +73,56 @@ namespace EmployeeManagement.API.Controllers
 
             var employees = _db.Employees.Include(e => e.Department).ToList();
             return Ok(employees);
+        }
+
+        // UPDATE
+        [HttpPut("{id}")]
+        public IActionResult UpdateEmployee([FromBody] Employee obj, int id)
+        {
+            if (id == 0 || id == null)
+            {
+                return BadRequest("Employee does not exist");
+            }
+
+            var employee = _db.Employees.Find(id);
+
+            if (employee  == null)
+            {
+                return NotFound("Employee not found");
+            }
+
+            employee.Name = obj.Name;
+            employee.Surname = obj.Surname;
+            employee.IdNumber = obj.IdNumber;
+            employee.JobTitle = obj.JobTitle;
+            employee.DepartmentId = obj.DepartmentId;
+
+            _db.Employees.Update(employee);
+            _db.SaveChanges();
+
+            return Ok(employee);
+        }
+
+        // DELETE
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEmployee(int id)
+        {
+            if (id == 0 || id == null)
+            {
+                return BadRequest("Employee does not exist");
+            }
+
+            var employee = _db.Employees.Find(id);
+
+            if (employee == null)
+            {
+                return NotFound("Employee not found");
+            }
+
+            _db.Employees.Remove(employee);
+            _db.SaveChanges();
+
+            return Ok(_db.Employees.ToList());
         }
     }
 }
