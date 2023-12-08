@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement.API.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using EmployeeManagement.API.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EmployeeManagement.API.Controllers
@@ -41,6 +42,35 @@ namespace EmployeeManagement.API.Controllers
             }
 
             return Ok(employee);
+        }
+
+        [HttpPost("CreateEmployee")]
+        public IActionResult CreateEmployee([FromBody] Employee obj)
+        {
+            if (obj == null)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            var department = _db.Departments.Find(obj.DepartmentId);
+
+            var employee = new Employee
+            {
+                EmployeeId = obj.EmployeeId,
+                Name = obj.Name,
+                Surname = obj.Surname,
+                IdNumber = obj.IdNumber,
+                JobTitle = obj.JobTitle,
+                DepartmentId = obj.DepartmentId,
+                DepartmentName = department.DepartmentName,
+                Department = department
+            };
+
+            _db.Employees.Add(employee);
+            _db.SaveChanges();
+
+            var employees = _db.Employees.Include(e => e.Department).ToList();
+            return Ok(employees);
         }
     }
 }

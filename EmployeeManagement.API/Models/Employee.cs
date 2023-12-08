@@ -11,7 +11,7 @@ namespace EmployeeManagement.API.Models
 
         public string Surname { get; set; }
 
-        public double IdNumber { get; set; }
+        public string IdNumber { get; set; }
         public string JobTitle { get; set; }
 
         // FK
