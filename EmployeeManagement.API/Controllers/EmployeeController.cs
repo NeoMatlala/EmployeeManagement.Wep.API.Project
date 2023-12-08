@@ -19,10 +19,28 @@ namespace EmployeeManagement.API.Controllers
         [HttpGet("GetEmployees")]
         public IActionResult GetEmployees() 
         {
-            //var employees = _db.Employees.ToList();
             var employees = _db.Employees.Include(e => e.Department).ToList();
 
             return Ok(employees);
+        }
+
+        [HttpGet("GetEmployee/{id}")]
+        public IActionResult GetEmployee(int id)
+        {
+
+            if(id == 0 || id == null)
+            {
+                return BadRequest("User does not exist");
+            }
+
+            var employee = _db.Employees.Include(e => e.Department).FirstOrDefault(e => e.EmployeeId == id);
+
+            if(employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
         }
     }
 }
