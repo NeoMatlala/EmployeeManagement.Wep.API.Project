@@ -41,8 +41,8 @@
                             {{employee.department.departmentName}}
                         </td>
                         <td class="px-6 py-4 space-x-5">
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
+                            <NuxtLink :to="`/update-employee/${employee.employeeId}`" class="font-medium text-blue-600 hover:underline">Edit</NuxtLink>
+                            <NuxtLink :to="`/delete-employee/${employee.employeeId}`" class="font-medium text-red-600 hover:underline">Delete</NuxtLink>
                         </td>
                     </tr>
                 </tbody>
