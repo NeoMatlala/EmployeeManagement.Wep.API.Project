@@ -1,6 +1,7 @@
 ﻿using EmployeeManagement.API.Data;
 using EmployeeManagement.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.API.Controllers
 {
@@ -20,6 +21,7 @@ namespace EmployeeManagement.API.Controllers
         public IActionResult GetDepartments()
         {
             var departments = _db.Departments.ToList();
+            //var departments = _db.Departments.Include(e => e.Employees).ToList();
             return Ok(departments);
         }
 
