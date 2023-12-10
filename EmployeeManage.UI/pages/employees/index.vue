@@ -65,13 +65,19 @@ export default{
         }
         
     },
+    setup(){
+        const config = useRuntimeConfig()
+        return {
+            baseApi: config.public.apiBase
+        }
+    },
     created(){
         this.getEmployees()
     },
     methods: {
         async getEmployees() {
             try{
-                var response = await axios.get("https://localhost:7244/api/Employee");
+                var response = await axios.get(`${this.baseApi}/api/Employee`);
                 //console.log(response.data)
                 this.employees = response.data
             } catch(error) {

@@ -45,8 +45,11 @@ export default{
     },
     setup(){
         const id = ref(useRoute().params.id);
+        const config = useRuntimeConfig()
+        
         return {
             id,
+            baseApi: config.public.apiBase
         };
     },
     created(){
@@ -55,7 +58,7 @@ export default{
     methods:{
         async fetchDepartment(){
             try{
-                var response = await axios.get(`https://localhost:7244/api/Department/GetDepartment/${this.id}`);
+                var response = await axios.get(`${this.baseApi}/api/Department/GetDepartment/${this.id}`);
                 this.department = response.data
                 console.log(response.data)
             } catch(error){
@@ -64,7 +67,7 @@ export default{
         },
         async handleSubmit(){
             try{
-                const response = await axios.post(`https://localhost:7244/api/Department/UpdateDepartment/${this.id}`, this.department)
+                const response = await axios.post(`${this.baseApi}/api/Department/UpdateDepartment/${this.id}`, this.department)
                 console.log(response.data)
                 this.$router.replace('/departments');
             } catch(error) {

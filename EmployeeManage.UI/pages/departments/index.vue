@@ -55,13 +55,19 @@ export default{
             departments: []
         }
     },
+    setup(){
+        const config = useRuntimeConfig()
+        return {
+            baseApi: config.public.apiBase
+        }
+    },
     created(){
         this.fetchDepartments();
     },
     methods:{
         async fetchDepartments(){
             try{
-                var response = await axios.get('https://localhost:7244/api/Department/GetDepartments');
+                var response = await axios.get(`${this.baseApi}/api/Department/GetDepartments`);
                 this.departments = response.data
                 console.log(response.data)
             } catch(error){
