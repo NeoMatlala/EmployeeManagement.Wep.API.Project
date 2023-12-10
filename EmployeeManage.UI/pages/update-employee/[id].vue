@@ -24,7 +24,10 @@
                 </div>  
                 <div>
                     <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Name</label>
-                    <input type="text" id="company" v-model="employee.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Software Development" required>
+                    <!-- <input type="text" id="company" v-model="employee.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Software Development" required> -->
+                    <select v-model="employee.departmentId" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Select department">
+                        <option v-for="department in departments" :key="department.departmentId" :value="department.departmentId">{{department.departmentName}}</option>
+                    </select>
                 </div>  
             </div>
             <div class="flex justify-end items-center">
@@ -48,8 +51,16 @@ export default{
                 surname: '',
                 idNumber: '',
                 jobTitle: '',
+                departmentId: '',
                 departmentName: '',
-            }
+                department: {
+                    departmentId: 0, 
+                    departmentName: '',
+                    manager: '',
+                    members: 0  
+                }
+            },
+            departments: []
         }
     },
     setup(){
@@ -60,6 +71,7 @@ export default{
     },
     created() {
         this.fetchEmployee()
+        this.getDepartments();
     },
     methods: {
         async fetchEmployee() {
@@ -71,7 +83,12 @@ export default{
                 console.log("Error getting employee: ", error.message)
             }
         },
+        async getDepartments() {
+            var response = await axios.get("https://localhost:7244/api/Department/GetDepartments");
+            this.departments = response.data
+        },
         async handleUpdate() {
+            this.getSelectedDepartment(this.employee.departmentId)
             try {
                 var response = await axios.put(`https://localhost:7244/api/Employee/${this.id}`, this.employee)
                 console.log(response.data)
@@ -79,7 +96,12 @@ export default{
             } catch (error) {
                 console.log("Error updating employee: ", error.message)
             }
-        }
+        },
+        async getSelectedDepartment(id) {
+            var response = await axios.get(`https://localhost:7244/api/Department/GetDepartment/${id}`)
+            this.employee.department = response.data;
+            this.employee.departmentName = this.employee.department.departmentName
+        },
     }
 }
 </script>
