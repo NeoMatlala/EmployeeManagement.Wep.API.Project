@@ -58,6 +58,7 @@ export default{
     },
     setup(){
         const id = ref(useRoute().params.id);
+        const config = useRuntimeConfig()
 
         onMounted(() => {
             const $buttonElement = document.querySelector('#button');
@@ -75,6 +76,7 @@ export default{
 
         return {
             id,
+            baseApi: config.public.apiBase
         };
     },
     created(){
@@ -83,7 +85,7 @@ export default{
     methods:{
         async fetchDepartment(){
             try{
-                var response = await axios.get(`https://localhost:7244/api/Department/GetDepartment/${this.id}`);
+                var response = await axios.get(`${this.baseApi}/api/Department/GetDepartment/${this.id}`);
                 this.department = response.data
                 //console.log(response.data)
             } catch(error){
@@ -98,7 +100,7 @@ export default{
             }
 
             try{
-                var response = await axios.delete(`https://localhost:7244/api/Department/DeleteDepartment/${this.id}`)
+                var response = await axios.delete(`${this.baseApi}/api/Department/DeleteDepartment/${this.id}`)
                 //console.log(response.data)
 
                 if ($modalElement) {

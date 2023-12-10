@@ -38,10 +38,16 @@ export default{
             }
         }
     },
+    setup(){
+        const config = useRuntimeConfig()
+        return {
+            baseApi: config.public.apiBase
+        }
+    },
     methods: {
         async CreateDepartment() {
             try {
-                var response = await axios.post("https://localhost:7244/api/Department/CreateDepartment", this.department)
+                var response = await axios.post(`${this.baseApi}/api/Department/CreateDepartment`, this.department)
                 console.log(response.data)
                 this.$router.replace('/departments');
             } catch (error) {

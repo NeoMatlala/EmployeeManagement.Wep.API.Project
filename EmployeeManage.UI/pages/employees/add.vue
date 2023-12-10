@@ -60,19 +60,25 @@ export default{
             departments: []
         }
     },
+    setup(){
+        const config = useRuntimeConfig()
+        return {
+            baseApi: config.public.apiBase
+        }
+    },
     created () {
         this.getDepartments();
     },
     methods: {
         async getDepartments() {
-            var response = await axios.get("https://localhost:7244/api/Department/GetDepartments");
+            var response = await axios.get(`${this.baseApi}/api/Department/GetDepartments`);
             this.departments = response.data
         },
         async CreateEmployee() {
             this.getSelectedDepartment(this.employee.departmentId)
 
             try {
-                var response = await axios.post("https://localhost:7244/api/Employee", this.employee)
+                var response = await axios.post(`${this.baseApi}/api/Employee`, this.employee)
                 
                 console.log(response.data)
                 this.$router.replace('/employees');
@@ -93,7 +99,7 @@ export default{
             }
         },
         async getSelectedDepartment(id) {
-            var response = await axios.get(`https://localhost:7244/api/Department/GetDepartment/${id}`)
+            var response = await axios.get(`${this.baseApi}/api/Department/GetDepartment/${id}`)
             this.employee.department = response.data;
             this.employee.departmentName = this.employee.department.departmentName
         }

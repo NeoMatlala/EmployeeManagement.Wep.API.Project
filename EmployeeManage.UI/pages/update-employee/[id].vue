@@ -65,8 +65,11 @@ export default{
     },
     setup(){
         const id = ref(useRoute().params.id);
+        const config = useRuntimeConfig()
+
         return {
             id,
+            baseApi: config.public.apiBase
         };
     },
     created() {
@@ -76,7 +79,7 @@ export default{
     methods: {
         async fetchEmployee() {
             try {
-                var response = await axios.get(`https://localhost:7244/api/Employee/${this.id}`)
+                var response = await axios.get(`${this.baseApi}/api/Employee/${this.id}`)
                 //console.log(response.data)
                 this.employee = response.data
             } catch (error) {
@@ -84,13 +87,13 @@ export default{
             }
         },
         async getDepartments() {
-            var response = await axios.get("https://localhost:7244/api/Department/GetDepartments");
+            var response = await axios.get(`${this.baseApi}/api/Department/GetDepartments`);
             this.departments = response.data
         },
         async handleUpdate() {
             this.getSelectedDepartment(this.employee.departmentId)
             try {
-                var response = await axios.put(`https://localhost:7244/api/Employee/${this.id}`, this.employee)
+                var response = await axios.put(`${this.baseApi}/api/Employee/${this.id}`, this.employee)
                 console.log(response.data)
                 this.$router.replace('/employees');
             } catch (error) {
@@ -98,7 +101,7 @@ export default{
             }
         },
         async getSelectedDepartment(id) {
-            var response = await axios.get(`https://localhost:7244/api/Department/GetDepartment/${id}`)
+            var response = await axios.get(`${this.baseApi}/api/Department/GetDepartment/${id}`)
             this.employee.department = response.data;
             this.employee.departmentName = this.employee.department.departmentName
         },
