@@ -14,7 +14,8 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
                 </svg>
             </button>
-            <div class="hidden mt-16 px-1 w-full md:block md:w-auto" id="navbar-default">
+            <hr class="mx-2">
+            <div class="hidden mt-10 px-1 w-full md:block md:w-auto" id="navbar-default">
                 <ul class="font-medium flex flex-col gap-y-5 text-lg">
                     <li class="py-2 px-4 rounded-sm" :class="{ 'bg-white text-blue-700': $route.path === '/' }">
                         <NuxtLink to="/" class="block  rounded md:bg-transparent md:hover:underline md:p-0" aria-current="page" >Home</NuxtLink>

@@ -6,23 +6,23 @@
             <div class="grid gap-10 mb-6 md:grid-cols-2">
                 <div>
                     <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                    <input disabled type="text" id="first_name" :value="employee.name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <input disabled type="text" id="first_name" :value="employee.name" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
                 <div>
                     <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Surname</label>
-                    <input disabled type="text" id="last_name" :value="employee.surname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <input disabled type="text" id="last_name" :value="employee.surname" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
                 <div>
                     <label for="company" class="block mb-2 text-sm font-medium text-gray-900">ID Number</label>
-                    <input disabled type="text" id="company" :value="employee.idNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <input disabled type="text" id="company" :value="employee.idNumber" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>  
                 <div>
                     <label for="company" class="block mb-2 text-sm font-medium text-gray-900">Job Title</label>
-                    <input disabled type="text" id="company" :value="employee.jobTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <input disabled type="text" id="company" :value="employee.jobTitle" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>  
                 <div>
                     <label for="company" class="block mb-2 text-sm font-medium text-gray-900">Department Name</label>
-                    <input disabled type="text" id="company" :value="employee.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <input disabled type="text" id="company" :value="employee.departmentName" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>  
             </div>
             <div class="flex justify-end items-center">
