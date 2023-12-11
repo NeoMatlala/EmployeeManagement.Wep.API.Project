@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.API.Data;
 using EmployeeManagement.API.Models;
+using EmployeeManagement.API.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,8 +21,28 @@ namespace EmployeeManagement.API.Controllers
         [HttpGet("GetDepartments", Name = "GetDepartments")]
         public IActionResult GetDepartments()
         {
+
             var departments = _db.Departments.ToList();
-            //var departments = _db.Departments.Include(e => e.Employees).ToList();
+            var departmentIds = _db.Departments.Select(d => d.DepartmentId).ToList();
+
+            var departmentData = new List<DepartmentData>();
+
+            foreach(var departmentId in departmentIds)
+            {
+                var department = _db.Departments.Find(departmentId);
+                int employeeCount = _db.Employees.Count(e => e.DepartmentId == departmentId);
+
+                department.Members = employeeCount;
+
+                departmentData.Add(new DepartmentData
+                {
+                    Department = department,
+                    EmployeeCount = employeeCount
+                });
+            }
+
+            _db.SaveChanges();
+
             return Ok(departments);
         }
 
