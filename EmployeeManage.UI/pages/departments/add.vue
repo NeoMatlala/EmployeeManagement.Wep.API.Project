@@ -5,15 +5,15 @@
         <form class="mt-16" @submit.prevent="CreateDepartment">
             <div class="grid gap-6 mb-6 md:grid-cols-3">
                 <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Name</label>
+                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Department Name</label>
                     <input type="text" id="first_name" v-model="department.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Sales">
                 </div>
                 <div>
-                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager</label>
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
                     <input type="text"  id="last_name" v-model="department.manager" placeholder="Zakes Malome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>
                 <div>
-                    <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Memebers</label>
+                    <label for="company" class="block mb-2 text-sm font-medium text-gray-900">Memebers</label>
                     <input type="text" id="company" disabled v-model="department.members" class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 </div>  
             </div>
