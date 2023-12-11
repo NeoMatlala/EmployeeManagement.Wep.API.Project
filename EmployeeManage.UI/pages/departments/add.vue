@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-7xl mx-auto">
-        <h1 class="font-medium text-4xl">Create Department</h1>
+        <h1 class="font-medium text-3xl">Create Department</h1>
 
         <form class="mt-16" @submit.prevent="CreateDepartment">
             <div class="grid gap-6 mb-6 md:grid-cols-3">
