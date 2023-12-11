@@ -5,18 +5,18 @@
         <form class="mt-16" @submit.prevent="handleSubmit">
             <div class="grid gap-6 mb-6 md:grid-cols-3">
                 <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Name</label>
-                    <input type="text" id="first_name" v-model="department.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Department Name</label>
+                    <input type="text" id="first_name" v-model="department.departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required>
                     <small class="text-xs hidden text-red-600">Department Name is required</small>
                 </div>
                 <div>
-                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager</label>
-                    <input type="text" id="last_name" v-model="department.manager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required>
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Manager</label>
+                    <input type="text" id="last_name" v-model="department.manager" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" required>
                     <small class="text-xs hidden text-red-600">Manager is required</small>
                 </div>
                 <div>
-                    <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Memebers</label>
-                    <input type="text" id="company" v-model="department.members" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Flowbite" required>
+                    <label for="company" class="block mb-2 text-sm font-medium text-gray-900">Memebers</label>
+                    <input type="text" id="company" v-model="department.members" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Flowbite" required>
                 </div>  
             </div>
             <div class="flex justify-end items-center">

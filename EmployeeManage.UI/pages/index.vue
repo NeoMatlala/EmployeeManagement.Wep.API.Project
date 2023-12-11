@@ -4,12 +4,12 @@
 
         <div class="mt-10 flex justify-start items-center gap-10">
             <NuxtLink to="/employees" class="block max-w-[200px] p-16 bg-white border border-gray-200 rounded-lg hover:bg-gray-100">
-                <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{employeeCount}}</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Employees</p>
+                <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900">{{employeeCount}}</h5>
+                <p class="font-normal text-gray-700">Employees</p>
             </NuxtLink>
             <NuxtLink to="/departments" class="block max-w-[200px] p-16 bg-white border border-gray-200 rounded-lg hover:bg-gray-100">
-                <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white">{{departmentCount}}</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Departments</p>
+                <h5 class="mb-2 text-5xl font-bold tracking-tight text-gray-900">{{departmentCount}}</h5>
+                <p class="font-normal text-gray-700">Departments</p>
             </NuxtLink>
         </div>
     </div>
